@@ -1,0 +1,41 @@
+
+    <!-- <% if(listtitle==="Sunday" || listtitle==="Saturday")      { %> 
+    
+
+         <h1 style="color:pink;">  <%=listtitle%> todolist</h1>
+ 
+       <%} else { %>
+       
+       <h1 style="color:blue;">  <%=listtitle%> todolist</h1>
+    <%}%> -->
+    <%- include('header.ejs'); -%>
+    <div class="box" id="heading">
+        <h1>
+            <%=listtitle%>
+        </h1>
+    
+    </div>
+    <div class="box">
+     
+        <% for(var i=0;i<newlist.length;i++){ %>
+            <form action="/delete" method="POST">
+                <div class="item">
+                    
+                    <input type="checkbox" name="checkbox" value="<%=newlist[i]._id%>"    onChange="this.form.submit()"></input>
+                   
+                        <p><%=newlist[i].name%></p>
+                    
+                    <input type="hidden"  name="listName" value="<%=listtitle%>" > </input>
+                    </div>
+                </form>
+                    <% } %>
+               
+        
+    
+
+    <form class="item" action="/" method="POST">
+        <input type="text" name="addwork" placeholder="Add your work" autocomplete="off">
+        <button type="submit" name="list" value=<%=listtitle%>>+</button>
+    </form>
+</div>
+<%- include('footer.ejs'); -%>
